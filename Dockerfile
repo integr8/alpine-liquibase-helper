@@ -7,7 +7,7 @@ ADD files/ojdbc8.jar /opt/liquibase/lib
 ADD files/postgresql-42.1.4.jar /opt/liquibase/lib
 ADD entrypoint.sh /usr/local/bin/
 
-WORKDIR /opt/jail
+WORKDIR /opt
 
 RUN apk add --no-cache bash git \
     && ln -s /opt/liquibase/liquibase /usr/local/bin \

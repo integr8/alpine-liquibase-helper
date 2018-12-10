@@ -3,33 +3,33 @@ set -e
 
 export SOURCE_PATH='/opt/source'
 export LIQUIBASE_ASSETS_PATH='/opt/liquibase'
-export BINARY_PATH=$(dirname "$0")
+export BINARY_PATH=$(dirname "$0")/liquibase/
 
 mkdir -p $LIQUIBASE_ASSETS_PATH
 
-source $BINARY_PATH/liquibase_configure.sh
+source $BINARY_PATH/configure.sh
 
 case "$1" in
     cmd|command)
-        $BINARY_PATH/liquibase_command.sh "${@:2}"
+        $BINARY_PATH/command.sh "${@:2}"
         ;;
     status)
-        $BINARY_PATH/liquibase_status.sh
+        $BINARY_PATH/status.sh
         ;;
     diff)
-        $BINARY_PATH/liquibase_diff.sh
+        $BINARY_PATH/diff.sh
         ;;
     generateDiff)
-        $BINARY_PATH/liquibase_generate_diff.sh
+        $BINARY_PATH/generate_diff.sh
         ;;
     update)
-        $BINARY_PATH/liquibase_update.sh
+        $BINARY_PATH/update.sh
         ;;
     generate)
-        $BINARY_PATH/liquibase_generate.sh
+        $BINARY_PATH/generate.sh
         ;;
     report|dbdoc)
-        $BINARY_PATH/liquibase_dbdoc.sh
+        $BINARY_PATH/dbdoc.sh
         ;;
     *)
         echo 'Aparentemente você não sabe o que está fazendo'

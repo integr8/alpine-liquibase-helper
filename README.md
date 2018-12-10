@@ -107,3 +107,16 @@ docker run --rm \
     --changeLogFile=changeset-diff_2018-12-09.xml dbDoc dbdoc-report_$(date +%F_%H-%M)
 ```
 
+``` bash
+docker run --rm \
+  -e 'SOURCE_METHOD=VOLUME' \
+  -e 'LIQUIBASE_URL=jdbc:postgresql://172.17.0.3:5432/sipu' \
+  -e 'LIQUIBASE_DB_USER=sipu' \
+  -e 'LIQUIBASE_DB_PASS=sipu' \
+  -e 'LIQUIBASE_DB_REFERENCE_URL=jdbc:postgresql://172.17.0.2:5432/sipu' \
+  -e 'LIQUIBASE_DB_REFERENCE_USER=sipu' \
+  -e 'LIQUIBASE_DB_REFERENCE_PASS=sipu' \
+  -v $(pwd)/source:/opt/source \
+  -v $(pwd)/liquibase:/opt/liquibase \
+  liquibase-helper diff
+```

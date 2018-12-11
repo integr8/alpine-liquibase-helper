@@ -1,15 +1,13 @@
 #!/bin/bash
 set -e
 
-: ${CHANGELOG_FILE:="changeset_$(date +%F_%H-%M).xml"}
-
 : ${LIQUIBASE_DB_REFERENCE_URL?  "Por favor, informe a URL do banco de referencia" }
 : ${LIQUIBASE_DB_REFERENCE_USER? "Por favor, informe o usuário de conexão ao banco de referencia" }
 : ${LIQUIBASE_DB_REFERENCE_PASS? "Por favor, informe a senha de conexão ao banco de referencia" }
 
 
 # Liquibase Options
-LIQUIBASE_OPTIONS=" --changeLogFile=${LIQUIBASE_ASSETS_PATH}/${CHANGELOG_FILE}"
+LIQUIBASE_OPTIONS=''
 
 if [[ $LIQUIBASE_DEBUG == 1 ]]; then
   LIQUIBASE_OPTIONS="${LIQUIBASE_OPTIONS} --logLevel=debug"

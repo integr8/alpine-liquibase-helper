@@ -3,11 +3,12 @@ set -e
 
 export SOURCE_PATH='/opt/source'
 export LIQUIBASE_ASSETS_PATH='/opt/liquibase'
-export BINARY_PATH=$(dirname "$0")/liquibase/
+export BINARY_PATH=$(dirname "$0")
 
 mkdir -p $LIQUIBASE_ASSETS_PATH
 
 source $BINARY_PATH/configure.sh
+source $BINARY_PATH/sources.sh
 
 case "$1" in
     cmd|command)

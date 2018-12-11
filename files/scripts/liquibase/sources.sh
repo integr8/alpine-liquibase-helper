@@ -1,7 +1,3 @@
-SOURCE_PATH='/opt/tmp/source'
-
-cd $SOURCE_PATH
-
 : ${SOURCE_METHOD? "Por favor, informe se será GIT ou VOLUME"}
 
 if [ "$SOURCE_METHOD" == 'GIT' ]; then

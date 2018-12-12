@@ -11,7 +11,7 @@ source $BINARY_PATH/configure.sh
 source $BINARY_PATH/sources.sh
 
 case "$1" in
-    cmd|command)
+    cmd|command|raw)
         $BINARY_PATH/command.sh "${@:2}"
         ;;
     status)

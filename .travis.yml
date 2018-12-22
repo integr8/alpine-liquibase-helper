@@ -13,10 +13,9 @@ jobs:
         - sudo mv dist_linux/* /usr/local/bin/
         - rm -rf dist_linux
         - docker-slim
-    - stage: "Build Image"
-      script:
         - docker build -t integr8/alpine-liquibase-helper .
-    - stage: "Minimify image"
-      script:
         - docker-slim --state-path $(pwd) build --tag integr8/alpine-liquibase-helper:slim integr8/alpine-liquibase-helper 
-    
+        - docker images
+    - stage: "Push to docker HUB"
+      script:
+        - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin

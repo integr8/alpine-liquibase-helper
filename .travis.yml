@@ -13,3 +13,10 @@ jobs:
         - sudo mv dist_linux/* /usr/local/bin/
         - rm -rf dist_linux
         - docker-slim
+    - stage: "Build Image"
+      script:
+        - docker build -t integr8/alpine-liquibase-helper .
+    - stage: "Minimify image"
+      script:
+        - docker-slim --state-path $(pwd) build --tag integr8/alpine-liquibase-helper:slim integr8/alpine-liquibase-helper 
+    

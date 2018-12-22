@@ -10,5 +10,6 @@ jobs:
         - wget https://github.com/docker-slim/docker-slim/releases/download/1.22/dist_linux.tar.gz -O dockerslim.tar.gz
         - tar -xvzf dockerslim.tar.gz
         - rm dockerslim.tar.gz
-        - mv dist_linux/* /usr/local/bin/
+        - sudo mv dist_linux/* /usr/local/bin/
         - rm -rf dist_linux
+        - docker-slim

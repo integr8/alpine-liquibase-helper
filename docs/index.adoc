@@ -10,7 +10,7 @@ Fábio Luciano <fabio@naoimporta.com>
 Liquibase 3.5.5
 
 Conectores::
- * PostgreSQL - 42.1.4
+ * PostgreSQL - 42.2.5
  * Oracle - Obdbc7
  * MySQL - 5.1.45
 

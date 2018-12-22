@@ -6,4 +6,4 @@ services:
 jobs:
   include:
     - stage: "Pre-build"
-      script: wget https://github.com/docker-slim/docker-slim/releases/download/1.22/dist_linux.tar.gz -O dockerslim.tar.gz && tar -xvzf dockersslim.tar.gz && ls
+      script: wget https://github.com/docker-slim/docker-slim/releases/download/1.22/dist_linux.tar.gz -O dockerslim.tar.gz && tar -xvzf dockerslim.tar.gz && ls

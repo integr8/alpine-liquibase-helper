@@ -13,4 +13,5 @@ jobs:
         - docker build -t integr8/alpine-liquibase-helper .
         - docker-slim --state-path $(pwd) build --continue-after 3 --show-blogs --tag integr8/alpine-liquibase-helper:slim integr8/alpine-liquibase-helper
         - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin
-        - docker push integr8/alpine-liquibase-helper:slim integr8/alpine-liquibase-helper:latest
+        - docker push integr8/alpine-liquibase-helper:latest
+        - docker push integr8/alpine-liquibase-helper:slim

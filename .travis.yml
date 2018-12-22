@@ -14,7 +14,7 @@ jobs:
         - rm -rf dist_linux
         - docker-slim
         - docker build -t integr8/alpine-liquibase-helper .
-        - docker-slim --state-path $(pwd) build --continue-after 3 --show-blogs --tag integr8/alpine-liquibase-helper:slim integr8/alpine-liquibase-helper:slim
+        - docker-slim --state-path $(pwd) build --continue-after 3 --show-blogs --tag integr8/alpine-liquibase-helper:slim integr8/alpine-liquibase-helper
         - docker images
     - stage: "Push to docker HUB"
       script:

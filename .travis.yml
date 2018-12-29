@@ -5,19 +5,18 @@ services:
 
 jobs:
   include:
-    - stage: "Pre-build"
-      script: 
-        - wget https://github.com/docker-slim/docker-slim/releases/download/1.22/dist_linux.tar.gz -O dockerslim.tar.gz
-        - tar -xvzf dockerslim.tar.gz && rm dockerslim.tar.gz
-        - sudo mv dist_linux/* /usr/local/bin/ && rm -rf dist_linux
-        - docker build -t integr8/alpine-liquibase-helper .
-        - docker-slim --state-path $(pwd) build --continue-after 3 --show-blogs --tag integr8/alpine-liquibase-helper:slim integr8/alpine-liquibase-helper
-        - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin
-        - docker push integr8/alpine-liquibase-helper:slim
+    # - stage: "Pre-build"
+    #   script: 
+    #     - wget https://github.com/docker-slim/docker-slim/releases/download/1.22/dist_linux.tar.gz -O dockerslim.tar.gz
+    #     - tar -xvzf dockerslim.tar.gz && rm dockerslim.tar.gz
+    #     - sudo mv dist_linux/* /usr/local/bin/ && rm -rf dist_linux
+    #     - docker build -t integr8/alpine-liquibase-helper .
+    #     - docker-slim --state-path $(pwd) build --continue-after 3 --show-blogs --tag integr8/alpine-liquibase-helper:slim integr8/alpine-liquibase-helper
+    #     - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin
+    #     - docker push integr8/alpine-liquibase-helper:slim
     - stage: "Publish docs"
       script:
         - docker run --rm -v $TRAVIS_BUILD_DIR:/documents/ asciidoctor/docker-asciidoctor asciidoctor -D /documents/output docs/index.adoc
-        - ls
       deploy:
         provider: pages
         target-branch: gh-pages

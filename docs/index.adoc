@@ -33,7 +33,7 @@ O clone do repositório, na imagem será feito em `/opt/source`
 |=======
 | Variável | Descrição | Valor Padrão
 | GIT_EMAIL | E-mail do usuário responsável pelo commit ( será o email do usuário configurado no gitconfig ) | N/A
-| GIT_URL | URL do repositório | https://github.com/integr8/liquibase-helper/
+| GIT_URL | URL do repositório | https://github.com/integr8/integr8/alpine-liquibase-helper/
 | GIT_USER | Usuário utilizado para autencicação no repositório | N/A
 | GIT_PASS | Senha utilização para autenticação no repositório | N/A
 |=======
@@ -54,7 +54,7 @@ docker run --rm \
   -e 'LIQUIBASE_DB_USER=user' \
   -e 'LIQUIBASE_DB_PASS=password' \
   -v $(pwd)/source:/opt/source  \ # <1>
-liquibase-helper status
+integr8/alpine-liquibase-helper status
 --------------------------------------------------------------
 <1> Referencia ao volume, sendo que a localização atual no host é na raiz do repositório do projeto.
 ===============================================================
@@ -73,6 +73,7 @@ O propósito desta funcionalidade é extrair os ChangeSets
 | CHANGESET_PATH | Diretório que guarda os changesets utilizados pelo ChangeLog | `$(dirname  ${CHANGELOG_FILE})/changeset`
 | CHANGESET_FILE | Nome padrão dos ChangeSets | changeset_YYYY-MM-DD_HH-MM.xml
 | LIQUIBASE_AUTHOR | Autor que será referenciado nos ChangeSets | liquibase
+| LIQUIBASE_WITH_DATA | Flga para habilitar a inclusão dos dados no changeset | 0
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
 | LIQUIBASE_DB_SCHEME | Schema a ser utilizado pelo liquibase | N/A
 |=======
@@ -115,7 +116,7 @@ docker run --rm \
   -e 'LIQUIBASE_DB_USER=username' \
   -e 'LIQUIBASE_DB_PASS=password' \
   -v $(pwd)/source:/opt/source  \
-liquibase-helper generate
+integr8/alpine-liquibase-helper generate
 --------------------------------------------------------------
 ===============================================================
 
@@ -152,7 +153,7 @@ docker run --rm \
   -e 'LIQUIBASE_DB_USER=username' \
   -e 'LIQUIBASE_DB_PASS=password' \
   -v $(pwd)/source:/opt/source  \
-liquibase-helper status
+integr8/alpine-liquibase-helper status
 --------------------------------------------------------------
 ===============================================================
 
@@ -189,7 +190,7 @@ docker run --rm \
   -e 'LIQUIBASE_DB_USER=username' \
   -e 'LIQUIBASE_DB_PASS=password' \
   -v $(pwd)/source:/opt/source  \
-liquibase-helper update
+integr8/alpine-liquibase-helper update
 --------------------------------------------------------------
 ===============================================================
 
@@ -232,7 +233,7 @@ docker run --rm \
   -e 'LIQUIBASE_DB_REFERENCE_USER=username' \
   -e 'LIQUIBASE_DB_REFERENCE_PASS=password' \
   -v $(pwd)/source:/opt/source \
-liquibase-helper diff
+integr8/alpine-liquibase-helper diff
 --------------------------------------------------------------
 ===============================================================
 
@@ -278,7 +279,7 @@ docker run --rm \
   -e 'LIQUIBASE_DB_REFERENCE_USER=sipu' \
   -e 'LIQUIBASE_DB_REFERENCE_PASS=sipu' \
   -v $(pwd)/source:/opt/source \
-liquibase-helper generateDiff
+integr8/alpine-liquibase-helper generateDiff
 --------------------------------------------------------------
 ===============================================================
 
@@ -316,7 +317,7 @@ docker run --rm \
   -e 'LIQUIBASE_DB_PASS=sipu' \
   -v $(pwd)/source:/opt/source \
   -v $(pwd)/report:/opt/liquibase/report \ <1>
-liquibase-helper report
+integr8/alpine-liquibase-helper report
 --------------------------------------------------------------
 <1> Note a referência ao volume do report, para que este esteja disponível no host que estiver executado este container
 ===============================================================
@@ -345,7 +346,7 @@ docker run --rm \
   -e 'LIQUIBASE_DB_USER=user' \
   -e 'LIQUIBASE_DB_PASS=password' \
   -v $(pwd)/source:/opt/source \
-liquibase-helper raw --logLevel=debug \
+integr8/alpine-liquibase-helper raw --logLevel=debug \
     diff \
         --referenceUrl=jdbc:postgresql://172.17.0.3:5432/db \
         --referenceUsername=user \

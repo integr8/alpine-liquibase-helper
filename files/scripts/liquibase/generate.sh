@@ -10,13 +10,17 @@ if [[ ! -d $CHANGESET_PATH ]]; then
   mkdir -p $CHANGESET_PATH
 fi
 
-LIQUIBASE_OPTIONS=" --changeLogFile=${CHANGESET_PATH}/${CHANGESET_FILE} --changeSetAuthor=${LIQUIBASE_AUTHOR}"
+LIQUIBASE_OPTIONS=" --changeLogFile=${CHANGESET_PATH}/${CHANGESET_FILE} --changeSetAuthor=${LIQUIBASE_AUTHOR} "
+
+if [[ $LIQUIBASE_WITH_DATA == 1 ]]; then
+    LIQUIBASE_OPTIONS="$LIQUIBASE_OPTIONS --diffTypes=tables,columns,views,primaryKeys,indexes,foreignKeys,sequences,data"
+fi
 
 if [[ $LIQUIBASE_DEBUG == 1 ]]; then
     LIQUIBASE_OPTIONS="$LIQUIBASE_OPTIONS --logLevel=debug"
 fi
 
-if [[ ! -z $LIQUIBASE_DB_SCHEME  ]]; then
+if [[ ! -z "$LIQUIBASE_DB_SCHEME"  ]]; then
   LIQUIBASE_OPTIONS="$LIQUIBASE_OPTIONS --defaultSchemaName=${LIQUIBASE_DB_SCHEME}"
 fi
 

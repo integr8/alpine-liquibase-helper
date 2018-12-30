@@ -1,5 +1,5 @@
 FROM openjdk:8-alpine
-LABEL maintainer="Fábio Luciano"
+LABEL maintainer="Fábio Luciano <fabio@naoimporta.com>"
 
 ADD files/libs/liquibase-3.5.5-bin.tar.gz /opt/liquibase-bin/
 ADD files/libs/mysql-connector-java-5.1.45-bin.jar files/libs/ojdbc7.jar \

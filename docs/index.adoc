@@ -83,7 +83,7 @@ O propósito desta funcionalidade é extrair os ChangeSets
 | CHANGESET_PATH | Diretório que guarda os changesets utilizados pelo ChangeLog | `$(dirname  ${CHANGELOG_FILE})/changeset`
 | CHANGESET_FILE | Nome padrão dos ChangeSets | changeset_YYYY-MM-DD_HH-MM.xml
 | LIQUIBASE_AUTHOR | Autor que será referenciado nos ChangeSets | liquibase
-| LIQUIBASE_WITH_DATA | Flga para habilitar a inclusão dos dados no changeset | 0
+| LIQUIBASE_WITH_DATA | Flag para habilitar a inclusão dos dados no changeset | 0
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
 | LIQUIBASE_DB_SCHEME | Schema a ser utilizado pelo liquibase | N/A
 |=======

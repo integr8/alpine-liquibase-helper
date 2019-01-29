@@ -363,3 +363,39 @@ integr8/alpine-liquibase-helper raw --logLevel=debug \
         --referencePassword=password
 --------------------------------------------------------------
 ===============================================================
+
+=== DropAll
+
+A execução desta funcionalidade apagará todos os objetos do banco de dados, não importando se foram executados pelo liquibase ou não.
+
+.Parâmetros Opcionais
+[width="100%", options="header",frame="topbot"] 
+|=======
+| Variável | Descrição | Valor Padrão
+| LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
+| LIQUIBASE_DB_SCHEME | Schema a ser utilizado pelo liquibase | N/A
+|=======
+
+.Parâmetros Obrigatórios
+[width="100%", options="header",frame="topbot"] 
+|=======
+| Variável | Descrição | Exemplo
+| LIQUIBASE_DB_URL | String de conexão com o banco de dados no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema
+| LIQUIBASE_DB_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEME}` requerido | N/A
+| LIQUIBASE_DB_PASS | Senha do usuário | N/A
+|=======
+
+[caption="Exemplo: "]
+.Utilização do comando *dropAll* com o PostgreSQL
+===============================================================
+[source, shell]
+--------------------------------------------------------------
+docker run --rm \
+  -e 'SOURCE_METHOD=VOLUME' \
+  -e 'LIQUIBASE_DB_URL=jdbc:postgresql://172.17.0.2:5432/db' \
+  -e 'LIQUIBASE_DB_USER=username' \
+  -e 'LIQUIBASE_DB_PASS=password' \
+  -v $(pwd)/source:/opt/source  \
+integr8/alpine-liquibase-helper dropall
+--------------------------------------------------------------
+===============================================================

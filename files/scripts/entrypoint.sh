@@ -32,6 +32,9 @@ case "$1" in
     report|dbdoc)
         $BINARY_PATH/dbdoc.sh
         ;;
+    dropAll|dropall)
+        $BINARY_PATH/dropall.sh
+        ;;
     *)
         echo 'Aparentemente você não sabe o que está fazendo'
 esac

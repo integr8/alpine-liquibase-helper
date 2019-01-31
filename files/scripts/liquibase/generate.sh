@@ -20,9 +20,13 @@ if [[ $LIQUIBASE_DEBUG == 1 ]]; then
     LIQUIBASE_OPTIONS="$LIQUIBASE_OPTIONS --logLevel=debug"
 fi
 
-if [[ ! -z "$LIQUIBASE_DB_SCHEME"  ]]; then
+if [[ ! -z "$LIQUIBASE_DB_SCHEME" ]]; then
   LIQUIBASE_OPTIONS="$LIQUIBASE_OPTIONS --defaultSchemaName=${LIQUIBASE_DB_SCHEME}"
 fi
+
+if [[ ! -z $LIQUIBASE_CONTEXT ]]; then
+  LIQUIBASE_OPTIONS="${LIQUIBASE_OPTIONS} --context=${LIQUIBASE_CONTEXT}"
+fi 
 
 liquibase $LIQUIBASE_OPTIONS generateChangeLog
 

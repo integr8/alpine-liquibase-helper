@@ -86,6 +86,7 @@ O propósito desta funcionalidade é extrair os ChangeSets
 | LIQUIBASE_WITH_DATA | Flag para habilitar a inclusão dos dados no changeset | 0
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
 | LIQUIBASE_DB_SCHEME | Schema a ser utilizado pelo liquibase | N/A
+| LIQUIBASE_CONTEXT | Contexto utilizado pelo liquibase | N/A
 |=======
 
 .Parâmetros Obrigatórios
@@ -141,6 +142,7 @@ O propósito desta funcionalidade retornar o estado atual do banco de dados rela
 | CHANGELOG_FILE | Arquivo que lista todos os ChangeSets pertencentes ao sistema | changelog.xml 
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
 | LIQUIBASE_DB_SCHEME | Schema a ser utilizado pelo liquibase | N/A
+| LIQUIBASE_CONTEXT | Contexto utilizado pelo liquibase | N/A
 |=======
 
 .Parâmetros Obrigatórios
@@ -178,6 +180,7 @@ Atualiza o banco de dados para a versão mais recente, consultando a tabela `DAT
 | CHANGELOG_FILE | Arquivo que lista todos os ChangeSets pertencentes ao sistema | changelog.xml 
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
 | LIQUIBASE_DB_SCHEME | Schema a ser utilizado pelo liquibase | N/A
+| LIQUIBASE_CONTEXT | Contexto utilizado pelo liquibase | N/A
 |=======
 
 .Parâmetros Obrigatórios
@@ -215,6 +218,7 @@ imprime a diferença entre dois bancos de dados para simples conferência
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
 | LIQUIBASE_DB_SCHEME | Schema a ser utilizado pelo liquibase | N/A
 | LIQUIBASE_DB_REFERENCE_SCHEMA | Schema a ser utilizado pelo liquibase no banco de referência | N/A
+| LIQUIBASE_CONTEXT | Contexto utilizado pelo liquibase | N/A
 |=======
 
 .Parâmetros Obrigatórios
@@ -261,6 +265,7 @@ O propósito desta funcionalidade comparar dois bancos de dados, e gerar o Chang
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
 | LIQUIBASE_DB_SCHEME | Schema a ser utilizado pelo liquibase | N/A
 | LIQUIBASE_DB_REFERENCE_SCHEMA | Schema a ser utilizado pelo liquibase no banco de referência | N/A
+| LIQUIBASE_CONTEXT | Contexto utilizado pelo liquibase | N/A
 |=======
 
 .Parâmetros Obrigatórios
@@ -304,6 +309,7 @@ Gera um relatório constrastando o `${CHANGELOG_FILE}` com o estado do banco de 
 | CHANGELOG_FILE | Arquivo que lista todos os ChangeSets pertencentes ao sistema | changelog.xml 
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
 | LIQUIBASE_DB_SCHEME | Schema a ser utilizado pelo liquibase | N/A
+| LIQUIBASE_CONTEXT | Contexto utilizado pelo liquibase | N/A
 |=======
 
 .Parâmetros Obrigatórios

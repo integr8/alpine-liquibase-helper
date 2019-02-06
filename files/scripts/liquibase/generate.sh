@@ -25,7 +25,7 @@ if [[ ! -z "$LIQUIBASE_DB_SCHEME" ]]; then
 fi
 
 if [[ ! -z $LIQUIBASE_CONTEXT ]]; then
-  LIQUIBASE_OPTIONS="${LIQUIBASE_OPTIONS} --context=${LIQUIBASE_CONTEXT}"
+  LIQUIBASE_OPTIONS="${LIQUIBASE_OPTIONS} --contexts=${LIQUIBASE_CONTEXT}"
 fi 
 
 liquibase $LIQUIBASE_OPTIONS generateChangeLog

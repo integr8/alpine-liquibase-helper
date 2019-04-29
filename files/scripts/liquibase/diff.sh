@@ -5,7 +5,6 @@ set -e
 : ${LIQUIBASE_DB_REFERENCE_USER? "Por favor, informe o usuário de conexão ao banco de referencia" }
 : ${LIQUIBASE_DB_REFERENCE_PASS? "Por favor, informe a senha de conexão ao banco de referencia" }
 
-
 # Liquibase Options
 LIQUIBASE_OPTIONS=''
 

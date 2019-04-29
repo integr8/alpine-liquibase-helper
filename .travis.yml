@@ -1,18 +1,28 @@
 sudo: required
-
+language: python
+git:
+  submodules: true
+python:
+  - "3.6"
 services:
   - docker
-
-jobs:
-  include:
-    - stage: "Publish docs"
-      script:
-        - docker run --rm -v $TRAVIS_BUILD_DIR:/documents/ -e 'ASCIIDOCTOR_THEME=riak' integr8/alpine-asciidoctor-helper html docs/index.adoc
-      deploy:
-        provider: pages
-        target-branch: gh-pages
-        skip_cleanup: true
-        local_dir: output/
-        github_token: $GH_TOKEN
-        on:
-          branch: development
+before_install:
+  - docker pull integr8/alpine-asciidoctor-helper
+  - mkdir -p output/{en,ptbr}
+script:
+  - docker run --rm -v $TRAVIS_BUILD_DIR:/documents/ -e 'ASCIIDOCTOR_PDF_THEMES_DIR=docs/theme/config' -e 'ASCIIDOCTOR_PDF_THEME=integr8' -e 'ASCIIDOCTOR_PDF_FONTS_DIR=docs/theme/fonts' integr8/alpine-asciidoctor-helper pdf docs/index-ptbr.adoc docs/index-en.adoc
+  - docker run --rm -v $TRAVIS_BUILD_DIR:/documents/ -e 'ASCIIDOCTOR_PLUGIN=google-analytics-docinfoprocessor' integr8/alpine-asciidoctor-helper html docs/index-ptbr.adoc docs/index-en.adoc
+  - cp $TRAVIS_BUILD_DIR/docs/theme/image/favicon-32.png  $TRAVIS_BUILD_DIR/output/en/favicon.png
+  - cp $TRAVIS_BUILD_DIR/docs/theme/image/favicon-32.png  $TRAVIS_BUILD_DIR/output/ptbr/favicon.png
+  - mv $TRAVIS_BUILD_DIR/output/index-ptbr.html $TRAVIS_BUILD_DIR/output/ptbr/index.html
+  - mv $TRAVIS_BUILD_DIR/output/index-en.html $TRAVIS_BUILD_DIR/output/en/index.html
+  - mv $TRAVIS_BUILD_DIR/output/index-ptbr.pdf $TRAVIS_BUILD_DIR/output/ptbr/doc.pdf
+  - mv $TRAVIS_BUILD_DIR/output/index-en.pdf $TRAVIS_BUILD_DIR/output/en/doc.pdf
+deploy:
+  provider: pages
+  target-branch: master
+  skip_cleanup: true
+  local_dir: output/
+  github_token: $GH_TOKEN
+  on:
+    branch: development

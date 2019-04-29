@@ -9,7 +9,10 @@ ADD files/scripts/* /usr/local/bin/
 WORKDIR /opt/
 
 RUN apk add --no-cache bash git \
+    && addduser integr8 \
     && ln -s /opt/liquibase-bin/liquibase /usr/local/bin \
     && chmod +x -R /usr/local/bin/
+
+USER integr8
 
 ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]

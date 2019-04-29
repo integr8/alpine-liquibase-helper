@@ -1,22 +1,6 @@
-:toc2:
-:toclevels: 2
-:icons: font
-:iconfont-cdn: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
-:linkattrs:
-:sectanchors:
-:sectlink:
-:experimental:
-:source-language: asciidoc
-:favicon: favicon.ico
+== Referência
 
-= Liquibase Helper
-Fábio Luciano <fabio@naoimporta.com>
-:doctype: book
-:reproducible:
-:source-highlighter: rouge
-:listing-caption: Listing
-
-== Compatibilidade
+=== Compatibilidade
 
 Liquibase 3.5.5
 
@@ -28,7 +12,7 @@ Conectores::
 Notas::
  * O SGBD referenciado na string de conexão será utilizado para carregar o conector a ser utilizado
 
-== Origem do código fonte
+=== Origem do código fonte
 
 [width="100%", options="header",frame="topbot"] 
 |=======
@@ -36,7 +20,7 @@ Notas::
 | SOURCE_METHOD | Origem do código fonte | *GIT* ou *VOLUME*
 |=======
 
-=== Git
+==== Git
 
 O clone do repositório, na imagem será feito em `/opt/source`
 
@@ -49,7 +33,7 @@ O clone do repositório, na imagem será feito em `/opt/source`
 | GIT_PASS | Senha utilização para autenticação no repositório | N/A
 |=======
 
-=== Volume
+==== Volume
 
 Caso os procedimentos serão executados em um código já clonado, o `root` do repositório deverá ser referenciado como um volume em `/opt/source`
 
@@ -70,9 +54,9 @@ integr8/alpine-liquibase-helper status
 <1> Referencia ao volume, sendo que a localização atual no host é na raiz do repositório do projeto.
 ===============================================================
 
-== Instruções do Liquibase
+=== Instruções do Liquibase
 
-=== Generate
+==== Generate
 
 O propósito desta funcionalidade é extrair os ChangeSets
 
@@ -132,7 +116,7 @@ integr8/alpine-liquibase-helper generate
 --------------------------------------------------------------
 ===============================================================
 
-=== Status
+==== Status
 
 O propósito desta funcionalidade retornar o estado atual do banco de dados relacionando os ChangeSets existentes com os aplicados e rastreados na tabela `DATABASECHANGELOG`.
 
@@ -170,7 +154,7 @@ integr8/alpine-liquibase-helper status
 --------------------------------------------------------------
 ===============================================================
 
-=== Update
+==== Update
 
 Atualiza o banco de dados para a versão mais recente, consultando a tabela `DATABASECHANGELOG`, quais os ChangeSets não foram executados.
 
@@ -208,7 +192,7 @@ integr8/alpine-liquibase-helper update
 --------------------------------------------------------------
 ===============================================================
 
-=== Diff
+==== Diff
 
 imprime a diferença entre dois bancos de dados para simples conferência
 
@@ -252,7 +236,7 @@ integr8/alpine-liquibase-helper diff
 --------------------------------------------------------------
 ===============================================================
 
-=== GenerateDiff
+==== GenerateDiff
 O propósito desta funcionalidade comparar dois bancos de dados, e gerar o ChangeSet para que um fique idêntico ao outro. O script atualiza o arquivo de ChangeLog referenciado em `${CHANGELOG_FILE}`, adicionando o ChangeSet criado.
 
 .Parâmetros Opcionais
@@ -299,7 +283,7 @@ integr8/alpine-liquibase-helper generateDiff
 --------------------------------------------------------------
 ===============================================================
 
-=== Report
+==== Report
 
 Gera um relatório constrastando o `${CHANGELOG_FILE}` com o estado do banco de dados atual, utilizado pelo Administrador de dados para conferência do que será mudado com a aplicação do ChangeLog.
 
@@ -339,7 +323,7 @@ integr8/alpine-liquibase-helper report
 <1> Note a referência ao volume do report, para que este esteja disponível no host que estiver executado este container
 ===============================================================
 
-=== Raw Command
+==== Raw Command
 
 Executa um comando sem a utilização dos Wrappers criados por esta imagem
 
@@ -371,7 +355,7 @@ integr8/alpine-liquibase-helper raw --logLevel=debug \
 --------------------------------------------------------------
 ===============================================================
 
-=== DropAll
+==== DropAll
 
 A execução desta funcionalidade apagará todos os objetos do banco de dados, não importando se foram executados pelo liquibase ou não.
 

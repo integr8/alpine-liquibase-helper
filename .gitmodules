@@ -1,0 +1,4 @@
+[submodule "docs/theme"]
+	path = docs/theme
+	url = https://github.com/integr8/asciidoctor-theme.git
+	branch = development

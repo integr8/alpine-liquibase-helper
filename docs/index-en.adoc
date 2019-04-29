@@ -1,0 +1,15 @@
+include::variables.adoc[]
+include::theme/variables.adoc[]
+:toc-title: Índice
+
+ifdef::backend-pdf[:notitle:]
+ifdef::backend-pdf[:!toc2:]
+ifdef::backend-pdf[]
+// [discrete]
+= {doctitle}
+endif::[]
+
+include::{templatedir}/ptbr/header.adoc[]
+
+
+include::{includedir}/ptbr/reference.adoc[]

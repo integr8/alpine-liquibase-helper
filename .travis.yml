@@ -15,6 +15,7 @@ script:
   - cp $TRAVIS_BUILD_DIR/docs/theme/image/favicon-32.png  $TRAVIS_BUILD_DIR/output/en/favicon.png
   - cp $TRAVIS_BUILD_DIR/docs/theme/image/favicon-32.png  $TRAVIS_BUILD_DIR/output/ptbr/favicon.png
   - mv $TRAVIS_BUILD_DIR/output/index-ptbr.html $TRAVIS_BUILD_DIR/output/ptbr/index.html
+  - mv $TRAVIS_BUILD_DIR/output/ptbr/index.html $TRAVIS_BUILD_DIR/output/index.html
   - mv $TRAVIS_BUILD_DIR/output/index-en.html $TRAVIS_BUILD_DIR/output/en/index.html
   - mv $TRAVIS_BUILD_DIR/output/index-ptbr.pdf $TRAVIS_BUILD_DIR/output/ptbr/doc.pdf
   - mv $TRAVIS_BUILD_DIR/output/index-en.pdf $TRAVIS_BUILD_DIR/output/en/doc.pdf

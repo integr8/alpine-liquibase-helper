@@ -6,7 +6,7 @@ set -e
 LIQUIBASE_OPTIONS=" --changeLogFile=${SOURCE_PATH}/${CHANGELOG_FILE}"
 
 if [[ $LIQUIBASE_DEBUG == 1 ]]; then
-  LIQUIBASE_OPTIONS="$LIQUIBASE_OPTIONS --logLevel=debug"
+  LIQUIBASE_OPTIONS="${LIQUIBASE_OPTIONS} --logLevel=TRACE"
 fi
 
 if [[ ! -z $LIQUIBASE_DB_SCHEMA ]]; then
@@ -16,5 +16,9 @@ fi
 if [[ ! -z $LIQUIBASE_CONTEXT ]]; then
   LIQUIBASE_OPTIONS="${LIQUIBASE_OPTIONS} --contexts=${LIQUIBASE_CONTEXT}"
 fi 
+
+if [[ $LIQUIBASE_DEBUG == 1 ]]; then
+  echo liquibase $LIQUIBASE_OPTIONS dbDoc ${LIQUIBASE_ASSETS_PATH}/report
+fi
 
 liquibase $LIQUIBASE_OPTIONS dbDoc ${LIQUIBASE_ASSETS_PATH}/report

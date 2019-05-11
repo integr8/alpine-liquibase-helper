@@ -17,4 +17,8 @@ if [[ ! -z $LIQUIBASE_CONTEXT ]]; then
   LIQUIBASE_OPTIONS="${LIQUIBASE_OPTIONS} --contexts=${LIQUIBASE_CONTEXT}"
 fi 
 
+if [[ $LIQUIBASE_DEBUG == 1 ]]; then
+  echo liquibase $LIQUIBASE_OPTIONS status --verbose
+fi
+
 liquibase $LIQUIBASE_OPTIONS status --verbose

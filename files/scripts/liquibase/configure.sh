@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+: ${LIQUIBASE_OBJECTS:="tables,columns,views,primaryKeys,indexes,foreignKeys,sequences"}
+
 : ${LIQUIBASE_DB_URL?     "Por favor, informe uma string de conexão no padrão jdbc" }
 : ${LIQUIBASE_DB_USER? "Por favor, informe o usuário de conexão ao banco" }
 : ${LIQUIBASE_DB_PASS? "Por favor, informe a senha de conexão ao banco" }

@@ -3,7 +3,7 @@ set -e
 
 : ${CHANGELOG_FILE:="changelog.xml"}
 : ${CHANGESET_PATH:="$(dirname $SOURCE_PATH/$CHANGELOG_FILE)/changesets"}
-: ${CHANGESET_FILE:="changeset_$(date +%F_%H-%M).xml"}
+: ${CHANGESET_FILE:="$(date +%F_%H-%M-%S).xml"}
 : ${LIQUIBASE_AUTHOR:="liquibase"}
 
 if [[ ! -d $CHANGESET_PATH ]]; then
@@ -11,13 +11,17 @@ if [[ ! -d $CHANGESET_PATH ]]; then
 fi
 
 LIQUIBASE_OPTIONS=" --changeLogFile=${CHANGESET_PATH}/${CHANGESET_FILE} --changeSetAuthor=${LIQUIBASE_AUTHOR} "
+LIQUIBASE_CMD_OPTIONS=''
 
-if [[ $LIQUIBASE_WITH_DATA == 1 ]]; then
-    LIQUIBASE_OPTIONS="$LIQUIBASE_OPTIONS --diffTypes=tables,columns,views,primaryKeys,indexes,foreignKeys,sequences,data"
+if [[ ! -z $ONLY_DATA ]]; then
+    LIQUIBASE_OPTIONS="$LIQUIBASE_OPTIONS --diffTypes=data"
+    LIQUIBASE_OPTIONS=" ${LIQUIBASE_OPTIONS} --includeObjects=\"${ONLY_DATA}\""
+else
+  LIQUIBASE_OPTIONS="$LIQUIBASE_OPTIONS --diffTypes=${LIQUIBASE_OBJECTS}"
 fi
 
 if [[ $LIQUIBASE_DEBUG == 1 ]]; then
-    LIQUIBASE_OPTIONS="$LIQUIBASE_OPTIONS --logLevel=debug"
+    LIQUIBASE_OPTIONS="$LIQUIBASE_OPTIONS --logLevel=TRACE"
 fi
 
 if [[ ! -z "$LIQUIBASE_DB_SCHEME" ]]; then
@@ -26,9 +30,13 @@ fi
 
 if [[ ! -z $LIQUIBASE_CONTEXT ]]; then
   LIQUIBASE_OPTIONS="${LIQUIBASE_OPTIONS} --contexts=${LIQUIBASE_CONTEXT}"
-fi 
+fi
 
-liquibase $LIQUIBASE_OPTIONS generateChangeLog
+if [[ $LIQUIBASE_DEBUG == 1 ]]; then
+  echo liquibase $LIQUIBASE_OPTIONS generateChangeLog $LIQUIBASE_CMD_OPTIONS
+fi
+
+liquibase $LIQUIBASE_OPTIONS generateChangeLog $LIQUIBASE_CMD_OPTIONS
 
 if [[ -f ${SOURCE_PATH}/${CHANGESET_FILE}  ]]; then
     echo 'Changelog gerado em' ${SOURCE_PATH}/${CHANGESET_FILE}
@@ -38,4 +46,4 @@ if [[ ! -f  $SOURCE_PATH/$CHANGELOG_FILE ]]; then
     cp $BINARY_PATH/changelog.template.xml $SOURCE_PATH/$CHANGELOG_FILE 
 fi
 
-sed -i "/<\/databaseChangeLog>/i    <include relativeToChangelogFile=\"true\" file=\"changesets/$CHANGESET_FILE\" />" "${SOURCE_PATH}/${CHANGELOG_FILE}"
+sed -i "/<\/databaseChangeLog>/i <include relativeToChangelogFile=\"true\" file=\"changesets/$CHANGESET_FILE\" />" "${SOURCE_PATH}/${CHANGELOG_FILE}"

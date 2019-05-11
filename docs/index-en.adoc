@@ -9,7 +9,6 @@ ifdef::backend-pdf[]
 = {doctitle}
 endif::[]
 
-include::{templatedir}/en/header.adoc[]
+include::{templatedir}/ptbr/header.adoc[]
 
-
-include::{includedir}/en/reference.adoc[]
+include::{includedir}/ptbr/reference.adoc[]

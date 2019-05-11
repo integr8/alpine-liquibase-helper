@@ -11,5 +11,4 @@ endif::[]
 
 include::{templatedir}/ptbr/header.adoc[]
 
-
 include::{includedir}/ptbr/reference.adoc[]

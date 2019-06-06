@@ -45,7 +45,7 @@ Caso os procedimentos serão executados em um código já clonado, o `root` do r
 docker run --rm \
   -e 'SOURCE_METHOD=VOLUME' \
   -e 'LIQUIBASE_DB_URL=jdbc:postgresql://172.17.0.3:5432/db' \
-  -e 'LIQUIBASE_DB_SCHEME=public' \
+  -e 'LIQUIBASE_DB_SCHEMA=public' \
   -e 'LIQUIBASE_DB_USER=user' \
   -e 'LIQUIBASE_DB_PASS=password' \
   -v $(pwd)/source:/opt/source  \ # <1>
@@ -70,7 +70,7 @@ O propósito desta funcionalidade é extrair os ChangeSets
 | LIQUIBASE_AUTHOR | Autor que será referenciado nos ChangeSets | liquibase
 | LIQUIBASE_WITH_DATA | Flag para habilitar a inclusão dos dados no changeset | 0
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
-| LIQUIBASE_DB_SCHEME | Schema a ser utilizado pelo liquibase | N/A
+| LIQUIBASE_DB_SCHEMA | Schema a ser utilizado pelo liquibase | N/A
 | LIQUIBASE_CONTEXT | Contexto utilizado pelo liquibase | N/A
 |=======
 
@@ -79,7 +79,7 @@ O propósito desta funcionalidade é extrair os ChangeSets
 |=======
 | Variável | Descrição | Exemplo
 | LIQUIBASE_DB_URL | String de conexão com o banco de dados no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema
-| LIQUIBASE_DB_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEME}` requerido | N/A
+| LIQUIBASE_DB_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEMA}` requerido | N/A
 | LIQUIBASE_DB_PASS | Senha do usuário | N/A
 |=======
 
@@ -126,7 +126,7 @@ O propósito desta funcionalidade retornar o estado atual do banco de dados rela
 | Variável | Descrição | Valor Padrão
 | CHANGELOG_FILE | Arquivo que lista todos os ChangeSets pertencentes ao sistema | changelog.xml 
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
-| LIQUIBASE_DB_SCHEME | Schema a ser utilizado pelo liquibase | N/A
+| LIQUIBASE_DB_SCHEMA | Schema a ser utilizado pelo liquibase | N/A
 | LIQUIBASE_CONTEXT | Contexto utilizado pelo liquibase | N/A
 |=======
 
@@ -135,7 +135,7 @@ O propósito desta funcionalidade retornar o estado atual do banco de dados rela
 |=======
 | Variável | Descrição | Exemplo
 | LIQUIBASE_DB_URL | String de conexão com o banco de dados no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema
-| LIQUIBASE_DB_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEME}` requerido | N/A
+| LIQUIBASE_DB_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEMA}` requerido | N/A
 | LIQUIBASE_DB_PASS | Senha do usuário | N/A
 |=======
 
@@ -164,7 +164,7 @@ Atualiza o banco de dados para a versão mais recente, consultando a tabela `DAT
 | Variável | Descrição | Valor Padrão
 | CHANGELOG_FILE | Arquivo que lista todos os ChangeSets pertencentes ao sistema | changelog.xml 
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
-| LIQUIBASE_DB_SCHEME | Schema a ser utilizado pelo liquibase | N/A
+| LIQUIBASE_DB_SCHEMA | Schema a ser utilizado pelo liquibase | N/A
 | LIQUIBASE_CONTEXT | Contexto utilizado pelo liquibase | N/A
 |=======
 
@@ -173,7 +173,7 @@ Atualiza o banco de dados para a versão mais recente, consultando a tabela `DAT
 |=======
 | Variável | Descrição | Exemplo
 | LIQUIBASE_DB_URL | String de conexão com o banco de dados no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema
-| LIQUIBASE_DB_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEME}` requerido | N/A
+| LIQUIBASE_DB_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEMA}` requerido | N/A
 | LIQUIBASE_DB_PASS | Senha do usuário | N/A
 |=======
 
@@ -201,7 +201,7 @@ imprime a diferença entre dois bancos de dados para simples conferência
 |=======
 | Variável | Descrição | Valor Padrão
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
-| LIQUIBASE_DB_SCHEME | Schema a ser utilizado pelo liquibase | N/A
+| LIQUIBASE_DB_SCHEMA | Schema a ser utilizado pelo liquibase | N/A
 | LIQUIBASE_DB_REFERENCE_SCHEMA | Schema a ser utilizado pelo liquibase no banco de referência | N/A
 | LIQUIBASE_CONTEXT | Contexto utilizado pelo liquibase | N/A
 |=======
@@ -211,10 +211,10 @@ imprime a diferença entre dois bancos de dados para simples conferência
 |=======
 | Variável | Descrição | Exemplo
 | LIQUIBASE_DB_URL | String de conexão com o banco de dados no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema
-| LIQUIBASE_DB_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEME}` requerido | N/A
+| LIQUIBASE_DB_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEMA}` requerido | N/A
 | LIQUIBASE_DB_PASS | Senha do usuário | N/A
 | LIQUIBASE_DB_REFERENCE_URL | String de conexão com o banco de dados de referência no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema
-| LIQUIBASE_DB_REFERENCE_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEME}` requerido no banco de dados de referência  | N/A
+| LIQUIBASE_DB_REFERENCE_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEMA}` requerido no banco de dados de referência  | N/A
 | LIQUIBASE_DB_REFERENCE_PASS | Senha do usuário no banco de dados de referência | N/A
 |=======
 
@@ -248,7 +248,7 @@ O propósito desta funcionalidade comparar dois bancos de dados, e gerar o Chang
 | CHANGESET_FILE | Nome padrão dos ChangeSets | changeset_YYYY-MM-DD_HH-MM.xml
 | LIQUIBASE_AUTHOR | Autor que será referenciado nos ChangeSets | liquibase
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
-| LIQUIBASE_DB_SCHEME | Schema a ser utilizado pelo liquibase | N/A
+| LIQUIBASE_DB_SCHEMA | Schema a ser utilizado pelo liquibase | N/A
 | LIQUIBASE_DB_REFERENCE_SCHEMA | Schema a ser utilizado pelo liquibase no banco de referência | N/A
 | LIQUIBASE_CONTEXT | Contexto utilizado pelo liquibase | N/A
 |=======
@@ -258,10 +258,10 @@ O propósito desta funcionalidade comparar dois bancos de dados, e gerar o Chang
 |=======
 | Variável | Descrição | Exemplo
 | LIQUIBASE_DB_URL | String de conexão com o banco de dados no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema
-| LIQUIBASE_DB_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEME}` requerido | N/A
+| LIQUIBASE_DB_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEMA}` requerido | N/A
 | LIQUIBASE_DB_PASS | Senha do usuário | N/A
 | LIQUIBASE_DB_REFERENCE_URL | String de conexão com o banco de dados de referência no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema
-| LIQUIBASE_DB_REFERENCE_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEME}` requerido no banco de dados de referência  | N/A
+| LIQUIBASE_DB_REFERENCE_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEMA}` requerido no banco de dados de referência  | N/A
 | LIQUIBASE_DB_REFERENCE_PASS | Senha do usuário no banco de dados de referência | N/A
 |=======
 
@@ -293,7 +293,7 @@ Gera um relatório constrastando o `${CHANGELOG_FILE}` com o estado do banco de 
 | Variável | Descrição | Valor Padrão
 | CHANGELOG_FILE | Arquivo que lista todos os ChangeSets pertencentes ao sistema | changelog.xml 
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
-| LIQUIBASE_DB_SCHEME | Schema a ser utilizado pelo liquibase | N/A
+| LIQUIBASE_DB_SCHEMA | Schema a ser utilizado pelo liquibase | N/A
 | LIQUIBASE_CONTEXT | Contexto utilizado pelo liquibase | N/A
 |=======
 
@@ -302,7 +302,7 @@ Gera um relatório constrastando o `${CHANGELOG_FILE}` com o estado do banco de 
 |=======
 | Variável | Descrição | Exemplo
 | LIQUIBASE_DB_URL | String de conexão com o banco de dados no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema
-| LIQUIBASE_DB_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEME}` requerido | N/A
+| LIQUIBASE_DB_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEMA}` requerido | N/A
 | LIQUIBASE_DB_PASS | Senha do usuário | N/A
 |=======
 
@@ -364,7 +364,7 @@ A execução desta funcionalidade apagará todos os objetos do banco de dados, n
 |=======
 | Variável | Descrição | Valor Padrão
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
-| LIQUIBASE_DB_SCHEME | Schema a ser utilizado pelo liquibase | N/A
+| LIQUIBASE_DB_SCHEMA | Schema a ser utilizado pelo liquibase | N/A
 |=======
 
 .Parâmetros Obrigatórios
@@ -372,7 +372,7 @@ A execução desta funcionalidade apagará todos os objetos do banco de dados, n
 |=======
 | Variável | Descrição | Exemplo
 | LIQUIBASE_DB_URL | String de conexão com o banco de dados no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema
-| LIQUIBASE_DB_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEME}` requerido | N/A
+| LIQUIBASE_DB_USER | Usuário com permissão de leitura no `${LIQUIBASE_DB_SCHEMA}` requerido | N/A
 | LIQUIBASE_DB_PASS | Senha do usuário | N/A
 |=======
 

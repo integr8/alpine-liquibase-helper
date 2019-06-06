@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+: ${LIQUIBASE_DEFAULT_OBJECTS:="tables,columns,views,primaryKeys,indexes,foreignKeys,sequences"}
+
 : ${CHANGELOG_FILE:="changelog.xml"}
 : ${CHANGESET_PATH:="$(dirname $SOURCE_PATH/$CHANGELOG_FILE)/changesets"}
 : ${CHANGESET_FILE:="$(date +%F_%H-%M-%S).xml"}
@@ -21,7 +23,7 @@ else
 fi
 
 if [[ $LIQUIBASE_DEBUG == 1 ]]; then
-  LIQUIBASE_OPTIONS="${LIQUIBASE_OPTIONS} --logLevel=TRACE"
+  LIQUIBASE_OPTIONS="${LIQUIBASE_OPTIONS} --logLevel=debug"
 fi
 
 if [[ ! -z $LIQUIBASE_DB_SCHEMA ]]; then
@@ -33,8 +35,8 @@ if [[ ! -z $LIQUIBASE_CONTEXT ]]; then
 fi 
 
 # Diff Options
-if [[ ! -z $LIQUIBASE_DB_REFERENCE_SCHEME ]]; then
-  LIQUIBASE_CMD_OPTIONS="${LIQUIBASE_CMD_OPTIONS} --referenceDefaultSchemaName=${LIQUIBASE_DB_REFERENCE_SCHEME}"
+if [[ ! -z $LIQUIBASE_DB_REFERENCE_SCHEMA ]]; then
+  LIQUIBASE_CMD_OPTIONS="${LIQUIBASE_CMD_OPTIONS} --referenceDefaultSchemaName=${LIQUIBASE_DB_REFERENCE_SCHEMA}"
 fi 
 
 LIQUIBASE_CMD_OPTIONS="${LIQUIBASE_CMD_OPTIONS} --referenceUrl=${LIQUIBASE_DB_REFERENCE_URL}"

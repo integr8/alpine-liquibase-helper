@@ -6,7 +6,7 @@ set -e
 LIQUIBASE_OPTIONS=" --changeLogFile=${SOURCE_PATH}/${CHANGELOG_FILE}"
 
 if [[ $LIQUIBASE_DEBUG == 1 ]]; then
-  LIQUIBASE_OPTIONS="${LIQUIBASE_OPTIONS} --logLevel=TRACE"
+  LIQUIBASE_OPTIONS="${LIQUIBASE_OPTIONS} --logLevel=debug"
 fi
 
 if [[ ! -z $LIQUIBASE_DB_SCHEMA ]]; then

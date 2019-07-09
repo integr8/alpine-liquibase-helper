@@ -36,6 +36,9 @@ case "$1" in
     dropAll|dropall)
         $BINARY_PATH/dropall.sh
         ;;
+    version)
+        liquibase --version
+        ;;
     *)
         echo 'Aparentemente você não sabe o que está fazendo'
 esac

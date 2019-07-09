@@ -8,10 +8,10 @@ prepare:
 	mkdir -p output/en output/ptbr
 
 pdf:
-	docker run --rm -v $(CURDIR):/documents/ -e 'ASCIIDOCTOR_PLUGIN=asciidoctor-diagram' -e 'ASCIIDOCTOR_PDF_THEMES_DIR=docs/theme/config' -e 'ASCIIDOCTOR_PDF_THEME=integr8' -e 'ASCIIDOCTOR_PDF_FONTS_DIR=docs/theme/fonts' integr8/alpine-asciidoctor-helper pdf docs/index-ptbr.adoc docs/index-en.adoc
+	docker run --rm -v $(CURDIR):/documents/ -e 'ASCIIDOCTOR_PLUGIN=asciidoctor-diagram,tel-inline-macro' -e 'ASCIIDOCTOR_PDF_THEMES_DIR=docs/theme/config' -e 'ASCIIDOCTOR_PDF_THEME=integr8' -e 'ASCIIDOCTOR_PDF_FONTS_DIR=docs/theme/fonts' integr8/alpine-asciidoctor-helper pdf docs/index-ptbr.adoc docs/index-en.adoc
 
 html:
-	docker run --rm -v $(CURDIR):/documents/ -e 'ASCIIDOCTOR_PLUGIN=asciidoctor-diagram' -e 'ASCIIDOCTOR_PDF_THEMES_DIR=docs/theme/config' -e 'ASCIIDOCTOR_PDF_THEME=integr8' -e 'ASCIIDOCTOR_PDF_FONTS_DIR=docs/theme/fonts' integr8/alpine-asciidoctor-helper html docs/index-ptbr.adoc docs/index-en.adoc
+	docker run --rm -v $(CURDIR):/documents/ -e 'ASCIIDOCTOR_PLUGIN=asciidoctor-diagram,git-metadata-preprocessor' -e 'ASCIIDOCTOR_PDF_THEMES_DIR=docs/theme/config' -e 'ASCIIDOCTOR_PDF_THEME=integr8' -e 'ASCIIDOCTOR_PDF_FONTS_DIR=docs/theme/fonts' integr8/alpine-asciidoctor-helper html docs/index-ptbr.adoc docs/index-en.adoc
 
 post:
 	cp $(CURDIR)/docs/theme/image/favicon-32.png  $(CURDIR)/output/en/favicon.png

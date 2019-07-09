@@ -12,8 +12,8 @@ RUN apk add --no-cache bash git \
     && printf "integr8\nintegr8" | adduser integr8 \
     && chown integr8:integr8 /opt \
     && ln -s /opt/liquibase-bin/liquibase /usr/local/bin \
-    && chmod +x -R /usr/local/bin/
+    && chmod a+x -R /usr/local/bin/ && chown integr8:integr8 /opt -R
 
-USER integr8
+USER 1000
 
 ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]

@@ -1,9 +1,11 @@
 #!/bin/bash
 set -e
 
+: ${LIQUIBASE_DEFAULT_OBJECTS:="tables,columns,views,primaryKeys,indexes,foreignKeys,sequences"}
+
 : ${CHANGELOG_FILE:="changelog.xml"}
 : ${CHANGESET_PATH:="$(dirname $SOURCE_PATH/$CHANGELOG_FILE)/changesets"}
-: ${CHANGESET_FILE:="changeset_$(date +%F_%H-%M).xml"}
+: ${CHANGESET_FILE:="$(date +%F_%H-%M-%S).xml"}
 : ${LIQUIBASE_AUTHOR:="liquibase"}
 
 if [[ ! -d $CHANGESET_PATH ]]; then
@@ -12,8 +14,10 @@ fi
 
 LIQUIBASE_OPTIONS=" --changeLogFile=${CHANGESET_PATH}/${CHANGESET_FILE} --changeSetAuthor=${LIQUIBASE_AUTHOR} --defaultsFile=/opt/liquibase.properties"
 
-if [[ $LIQUIBASE_WITH_DATA == 1 ]]; then
-    LIQUIBASE_OPTIONS="$LIQUIBASE_OPTIONS --diffTypes=tables,columns,views,primaryKeys,indexes,foreignKeys,sequences,data"
+if [[ ! -z $ONLY_DATA ]]; then
+    LIQUIBASE_OPTIONS="$LIQUIBASE_OPTIONS --diffTypes=data"
+else
+  LIQUIBASE_OPTIONS="$LIQUIBASE_OPTIONS --diffTypes=${LIQUIBASE_DEFAULT_OBJECTS}"
 fi
 
 if [[ $LIQUIBASE_DEBUG == 1 ]]; then
@@ -26,7 +30,11 @@ fi
 
 if [[ ! -z $LIQUIBASE_CONTEXT ]]; then
   LIQUIBASE_OPTIONS="${LIQUIBASE_OPTIONS} --contexts=${LIQUIBASE_CONTEXT}"
-fi 
+fi
+
+if [[ $LIQUIBASE_DEBUG == 1 ]]; then
+  echo liquibase $LIQUIBASE_OPTIONS generateChangeLog $LIQUIBASE_CMD_OPTIONS
+fi
 
 if [[ $LIQUIBASE_DEBUG == 1 ]]; then
   echo liquibase $LIQUIBASE_OPTIONS --verbose
@@ -42,4 +50,4 @@ if [[ ! -f  $SOURCE_PATH/$CHANGELOG_FILE ]]; then
     cp $BINARY_PATH/changelog.template.xml $SOURCE_PATH/$CHANGELOG_FILE 
 fi
 
-sed -i "/<\/databaseChangeLog>/i    <include relativeToChangelogFile=\"true\" file=\"changesets/$CHANGESET_FILE\" />" "${SOURCE_PATH}/${CHANGELOG_FILE}"
+sed -i "/<\/databaseChangeLog>/i <include relativeToChangelogFile=\"true\" file=\"changesets/$CHANGESET_FILE\" />" "${SOURCE_PATH}/${CHANGELOG_FILE}"

@@ -3,7 +3,7 @@ set -e
 
 : ${CHANGELOG_FILE:="changelog.xml"}
 
-LIQUIBASE_OPTIONS=" --changeLogFile=${SOURCE_PATH}/${CHANGELOG_FILE}"
+LIQUIBASE_OPTIONS=" --defaultsFile=/opt/liquibase.properties --changeLogFile=${SOURCE_PATH}/${CHANGELOG_FILE}"
 
 if [[ $LIQUIBASE_DEBUG == 1 ]]; then
   LIQUIBASE_OPTIONS="${LIQUIBASE_OPTIONS} --logLevel=debug"

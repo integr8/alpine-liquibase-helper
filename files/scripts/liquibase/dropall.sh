@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-LIQUIBASE_OPTIONS=""
+LIQUIBASE_OPTIONS=" --defaultsFile=/opt/liquibase.properties"
 
 if [[ $LIQUIBASE_DEBUG == 1 ]]; then
   LIQUIBASE_OPTIONS="$LIQUIBASE_OPTIONS --logLevel=debug"

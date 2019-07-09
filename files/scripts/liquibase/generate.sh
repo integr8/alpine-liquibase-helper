@@ -12,7 +12,7 @@ if [[ ! -d $CHANGESET_PATH ]]; then
   mkdir -p $CHANGESET_PATH
 fi
 
-LIQUIBASE_OPTIONS=" --changeLogFile=${CHANGESET_PATH}/${CHANGESET_FILE} --changeSetAuthor=${LIQUIBASE_AUTHOR} --defaultsFile=/opt/liquibase.properties"
+LIQUIBASE_OPTIONS=" --defaultsFile=/opt/liquibase.properties --changeLogFile=${CHANGESET_PATH}/${CHANGESET_FILE} --changeSetAuthor=${LIQUIBASE_AUTHOR}"
 
 if [[ ! -z $ONLY_DATA ]]; then
     LIQUIBASE_OPTIONS="$LIQUIBASE_OPTIONS --diffTypes=data"

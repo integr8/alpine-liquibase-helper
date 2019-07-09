@@ -10,9 +10,9 @@ WORKDIR /opt//usr/bin/psql
 
 RUN apk add --no-cache bash git \
     && printf "integr8\nintegr8" | adduser integr8 \
-    && chown integr8:integr8 /opt \
     && ln -s /opt/liquibase-bin/liquibase /usr/local/bin \
-    && chmod a+x -R /usr/local/bin/ && chown integr8:integr8 /opt -R
+    && chmod a+x -R /usr/local/bin/ && chown integr8:integr8 /opt -R \
+    && rm -rf /var/cache/apk/*
 
 USER 1000
 

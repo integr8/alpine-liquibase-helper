@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+
+set -Eeuox pipefail
 
 export SOURCE_PATH='/opt/source'
 export LIQUIBASE_ASSETS_PATH='/opt/liquibase'

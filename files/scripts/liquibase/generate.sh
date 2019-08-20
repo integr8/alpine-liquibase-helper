@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 : ${LIQUIBASE_DEFAULT_OBJECTS:="tables,columns,views,primaryKeys,indexes,foreignKeys,sequences"}
 
@@ -36,11 +35,7 @@ if [[ $LIQUIBASE_DEBUG == 1 ]]; then
   echo liquibase $LIQUIBASE_OPTIONS generateChangeLog $LIQUIBASE_CMD_OPTIONS
 fi
 
-if [[ $LIQUIBASE_DEBUG == 1 ]]; then
-  echo liquibase $LIQUIBASE_OPTIONS --verbose
-fi
-
-liquibase $LIQUIBASE_OPTIONS generateChangeLog
+liquibase $LIQUIBASE_OPTIONS generateChangeLog $LIQUIBASE_CMD_OPTIONS
 
 if [[ -f ${SOURCE_PATH}/${CHANGESET_FILE}  ]]; then
     echo 'Changelog gerado em' ${SOURCE_PATH}/${CHANGESET_FILE}

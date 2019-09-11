@@ -8,13 +8,14 @@ Conectores::
  * PostgreSQL - 42.2.5
  * Oracle - Obdbc7
  * MySQL - 5.1.45
+ * SQLServer - 4.2
 
 Notas::
  * O SGBD referenciado na string de conexão será utilizado para carregar o conector a ser utilizado
 
 === Origem do código fonte
 
-[width="100%", options="header",frame="topbot"] 
+[width="100%", options="header",frame="topbot"]
 |=======
 | Variável | Descrição | Exemplo
 | SOURCE_METHOD | Origem do código fonte | *GIT* ou *VOLUME*
@@ -24,7 +25,7 @@ Notas::
 
 O clone do repositório, na imagem será feito em `/opt/source`
 
-[width="100%", options="header",frame="topbot"] 
+[width="100%", options="header",frame="topbot"]
 |=======
 | Variável | Descrição | Valor Padrão
 | GIT_EMAIL | E-mail do usuário responsável pelo commit ( será o email do usuário configurado no gitconfig ) | N/A
@@ -61,10 +62,10 @@ integr8/alpine-liquibase-helper status
 O propósito desta funcionalidade é extrair os ChangeSets
 
 .Parâmetros Opcionais
-[width="100%", options="header",frame="topbot"] 
+[width="100%", options="header",frame="topbot"]
 |=======
 | Variável | Descrição | Valor Padrão
-| CHANGELOG_FILE | Arquivo que lista todos os ChangeSets pertencentes ao sistema | changelog.xml 
+| CHANGELOG_FILE | Arquivo que lista todos os ChangeSets pertencentes ao sistema | changelog.xml
 | CHANGESET_PATH | Diretório que guarda os changesets utilizados pelo ChangeLog | `$(dirname  ${CHANGELOG_FILE})/changeset`
 | CHANGESET_FILE | Nome padrão dos ChangeSets | changeset_YYYY-MM-DD_HH-MM.xml
 | LIQUIBASE_AUTHOR | Autor que será referenciado nos ChangeSets | liquibase
@@ -75,7 +76,7 @@ O propósito desta funcionalidade é extrair os ChangeSets
 |=======
 
 .Parâmetros Obrigatórios
-[width="100%", options="header",frame="topbot"] 
+[width="100%", options="header",frame="topbot"]
 |=======
 | Variável | Descrição | Exemplo
 | LIQUIBASE_DB_URL | String de conexão com o banco de dados no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema
@@ -90,7 +91,7 @@ Caso o arquivo referenciado em `${CHANGELOG_FILE}`, não seja encontrado, será 
 ===============================================================
 [source, xml]
 --------------------------------------------------------------
-<databaseChangeLog 
+<databaseChangeLog
   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -121,17 +122,17 @@ integr8/alpine-liquibase-helper generate
 O propósito desta funcionalidade retornar o estado atual do banco de dados relacionando os ChangeSets existentes com os aplicados e rastreados na tabela `DATABASECHANGELOG`.
 
 .Parâmetros Opcionais
-[width="100%", options="header",frame="topbot"] 
+[width="100%", options="header",frame="topbot"]
 |=======
 | Variável | Descrição | Valor Padrão
-| CHANGELOG_FILE | Arquivo que lista todos os ChangeSets pertencentes ao sistema | changelog.xml 
+| CHANGELOG_FILE | Arquivo que lista todos os ChangeSets pertencentes ao sistema | changelog.xml
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
 | LIQUIBASE_DB_SCHEMA | Schema a ser utilizado pelo liquibase | N/A
 | LIQUIBASE_CONTEXT | Contexto utilizado pelo liquibase | N/A
 |=======
 
 .Parâmetros Obrigatórios
-[width="100%", options="header",frame="topbot"] 
+[width="100%", options="header",frame="topbot"]
 |=======
 | Variável | Descrição | Exemplo
 | LIQUIBASE_DB_URL | String de conexão com o banco de dados no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema
@@ -159,17 +160,17 @@ integr8/alpine-liquibase-helper status
 Atualiza o banco de dados para a versão mais recente, consultando a tabela `DATABASECHANGELOG`, quais os ChangeSets não foram executados.
 
 .Parâmetros Opcionais
-[width="100%", options="header",frame="topbot"] 
+[width="100%", options="header",frame="topbot"]
 |=======
 | Variável | Descrição | Valor Padrão
-| CHANGELOG_FILE | Arquivo que lista todos os ChangeSets pertencentes ao sistema | changelog.xml 
+| CHANGELOG_FILE | Arquivo que lista todos os ChangeSets pertencentes ao sistema | changelog.xml
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
 | LIQUIBASE_DB_SCHEMA | Schema a ser utilizado pelo liquibase | N/A
 | LIQUIBASE_CONTEXT | Contexto utilizado pelo liquibase | N/A
 |=======
 
 .Parâmetros Obrigatórios
-[width="100%", options="header",frame="topbot"] 
+[width="100%", options="header",frame="topbot"]
 |=======
 | Variável | Descrição | Exemplo
 | LIQUIBASE_DB_URL | String de conexão com o banco de dados no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema
@@ -197,7 +198,7 @@ integr8/alpine-liquibase-helper update
 imprime a diferença entre dois bancos de dados para simples conferência
 
 .Parâmetros Opcionais
-[width="100%", options="header",frame="topbot"] 
+[width="100%", options="header",frame="topbot"]
 |=======
 | Variável | Descrição | Valor Padrão
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
@@ -207,7 +208,7 @@ imprime a diferença entre dois bancos de dados para simples conferência
 |=======
 
 .Parâmetros Obrigatórios
-[width="100%", options="header",frame="topbot"] 
+[width="100%", options="header",frame="topbot"]
 |=======
 | Variável | Descrição | Exemplo
 | LIQUIBASE_DB_URL | String de conexão com o banco de dados no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema
@@ -240,10 +241,10 @@ integr8/alpine-liquibase-helper diff
 O propósito desta funcionalidade comparar dois bancos de dados, e gerar o ChangeSet para que um fique idêntico ao outro. O script atualiza o arquivo de ChangeLog referenciado em `${CHANGELOG_FILE}`, adicionando o ChangeSet criado.
 
 .Parâmetros Opcionais
-[width="100%", options="header",frame="topbot"] 
+[width="100%", options="header",frame="topbot"]
 |=======
 | Variável | Descrição | Valor Padrão
-| CHANGELOG_FILE | Arquivo que lista todos os ChangeSets pertencentes ao sistema | changelog.xml 
+| CHANGELOG_FILE | Arquivo que lista todos os ChangeSets pertencentes ao sistema | changelog.xml
 | CHANGESET_PATH | Diretório que guarda os changesets utilizados pelo ChangeLog | `$(dirname  ${CHANGELOG_FILE})/changeset`
 | CHANGESET_FILE | Nome padrão dos ChangeSets | changeset_YYYY-MM-DD_HH-MM.xml
 | LIQUIBASE_AUTHOR | Autor que será referenciado nos ChangeSets | liquibase
@@ -254,7 +255,7 @@ O propósito desta funcionalidade comparar dois bancos de dados, e gerar o Chang
 |=======
 
 .Parâmetros Obrigatórios
-[width="100%", options="header",frame="topbot"] 
+[width="100%", options="header",frame="topbot"]
 |=======
 | Variável | Descrição | Exemplo
 | LIQUIBASE_DB_URL | String de conexão com o banco de dados no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema
@@ -288,17 +289,17 @@ integr8/alpine-liquibase-helper generateDiff
 Gera um relatório constrastando o `${CHANGELOG_FILE}` com o estado do banco de dados atual, utilizado pelo Administrador de dados para conferência do que será mudado com a aplicação do ChangeLog.
 
 .Parâmetros Opcionais
-[width="100%", options="header",frame="topbot"] 
+[width="100%", options="header",frame="topbot"]
 |=======
 | Variável | Descrição | Valor Padrão
-| CHANGELOG_FILE | Arquivo que lista todos os ChangeSets pertencentes ao sistema | changelog.xml 
+| CHANGELOG_FILE | Arquivo que lista todos os ChangeSets pertencentes ao sistema | changelog.xml
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
 | LIQUIBASE_DB_SCHEMA | Schema a ser utilizado pelo liquibase | N/A
 | LIQUIBASE_CONTEXT | Contexto utilizado pelo liquibase | N/A
 |=======
 
 .Parâmetros Obrigatórios
-[width="100%", options="header",frame="topbot"] 
+[width="100%", options="header",frame="topbot"]
 |=======
 | Variável | Descrição | Exemplo
 | LIQUIBASE_DB_URL | String de conexão com o banco de dados no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema
@@ -311,7 +312,7 @@ Gera um relatório constrastando o `${CHANGELOG_FILE}` com o estado do banco de 
 ===============================================================
 [source, shell]
 --------------------------------------------------------------
-docker run --rm \  
+docker run --rm \
   -e 'SOURCE_METHOD=VOLUME' \
   -e 'LIQUIBASE_DB_URL=jdbc:postgresql://172.17.0.2:5432/sipu' \
   -e 'LIQUIBASE_DB_USER=sipu' \
@@ -328,7 +329,7 @@ integr8/alpine-liquibase-helper report
 Executa um comando sem a utilização dos Wrappers criados por esta imagem
 
 .Parâmetros Obrigatórios
-[width="100%", options="header",frame="topbot"] 
+[width="100%", options="header",frame="topbot"]
 |=======
 | Variável | Descrição | Exemplo
 | LIQUIBASE_DB_URL | String de conexão com o banco de dados no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema
@@ -341,7 +342,7 @@ Executa um comando sem a utilização dos Wrappers criados por esta imagem
 ===============================================================
 [source, shell]
 --------------------------------------------------------------
-docker run --rm \  
+docker run --rm \
   -e 'SOURCE_METHOD=VOLUME' \
   -e 'LIQUIBASE_DB_URL=jdbc:postgresql://172.17.0.2:5432/db' \
   -e 'LIQUIBASE_DB_USER=user' \
@@ -360,7 +361,7 @@ integr8/alpine-liquibase-helper raw --logLevel=debug \
 A execução desta funcionalidade apagará todos os objetos do banco de dados, não importando se foram executados pelo liquibase ou não.
 
 .Parâmetros Opcionais
-[width="100%", options="header",frame="topbot"] 
+[width="100%", options="header",frame="topbot"]
 |=======
 | Variável | Descrição | Valor Padrão
 | LIQUIBASE_DEBUG | Flag para habilitar o debug | 0
@@ -368,7 +369,7 @@ A execução desta funcionalidade apagará todos os objetos do banco de dados, n
 |=======
 
 .Parâmetros Obrigatórios
-[width="100%", options="header",frame="topbot"] 
+[width="100%", options="header",frame="topbot"]
 |=======
 | Variável | Descrição | Exemplo
 | LIQUIBASE_DB_URL | String de conexão com o banco de dados no padrão utilizado pelo JDBC | jdbc:postgresql://172.17.0.2:5432/sistema

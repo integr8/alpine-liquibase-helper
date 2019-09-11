@@ -21,6 +21,7 @@ RUN apk add -q --no-cache curl bash git && mkdir -p /opt/liquibase-bin/ \
   && rm -rf /opt/liquibase-bin/sdk/javadoc /opt/liquibase-bin/liquibase.tar.gz /opt/liquibase-bin/lib/mysql.tar.gz && rm -rf /var/cache/apk/*
 
 ADD files/libs/ojdbc7.jar /opt/liquibase-bin/lib
+ADD files/libs/sqljdbc42.jar /opt/liquibase-bin/lib
 
 USER 1000
 

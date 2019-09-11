@@ -18,6 +18,9 @@ if [[ "$LIQUIBASE_DB_URL" =~ jdbc:([a-zA-Z]+) ]]; then
     "mysql")
         LIQUIBASE_DRIVER='com.mysql.jdbc.Driver'
         ;;
+    "sqlserver")
+        LIQUIBASE_DRIVER='com.microsoft.sqlserver.jdbc.SQLServerDriver'
+        ;;
     esac
 
      echo -e "driver: ${LIQUIBASE_DRIVER}\nurl: ${LIQUIBASE_DB_URL}\nusername: ${LIQUIBASE_DB_USER}\npassword: ${LIQUIBASE_DB_PASS}" > /opt/liquibase.properties

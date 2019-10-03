@@ -8,7 +8,7 @@ Conectores::
  * PostgreSQL - 42.2.5
  * Oracle - Obdbc7
  * MySQL - 5.1.45
- * SQLServer - 4.2
+ * SQLServer - 4.2 
 
 Notas::
  * O SGBD referenciado na string de conexão será utilizado para carregar o conector a ser utilizado
